@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    // Nowoczesny target + biblioteki
+    "target": "ES2022",
+    "lib": ["ES2022"],
+
+    // ESM w Node (używaj "type": "module" w package.json)
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true,
+
+    // Struktura projektu
+    "rootDir": "src",
+    "outDir": "dist",
+
+    // Bezpieczeństwo typów
+    "strict": true,
+    "noImplicitOverride": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "useUnknownInCatchVariables": true,
+
+    // Ergonomia i prędkość
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+
+    // Przydatne w backendzie
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "types": ["node"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.spec.ts"]
+}
