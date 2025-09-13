@@ -1,12 +1,12 @@
-import isAuthorized from './isAuthorized';
-import rateLimit from './rateLimit';
-import compression from './compression';
-import cors from './cors';
-import helmet from './helmet';
-import logger from './logger';
-import bodyParser from './bodyParser';
-import session from './session';
-import csrf from './csrf';
-import staticFiles from './staticFiles';
+import isAuthorized from './isAuthorized.js';
+import rateLimit from './rateLimit.js';
+import compression from './compression.js';
+import cors from './cors.js';
+import helmet from './helmet.js';
+import logger from './logger.js';
+import bodyParser from './bodyParser.js';
+import session from './session.js';
+import csrf from './csrf.js';
+import staticFiles from './staticFiles.js';
 
 export { isAuthorized, rateLimit, compression, cors, helmet, logger, bodyParser, session, csrf, staticFiles };

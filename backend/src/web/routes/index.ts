@@ -1,10 +1,10 @@
 import { Router } from 'express';
-import adminRoutes from './admin';
-import apiRoutes from './api';
-import authRoutes from './auth';
-import dashboardRoutes from './dashboard';
-import errorRoutes from './errors';
-import publicRoutes from './public';
+import adminRoutes from './admin/index.js';
+import apiRoutes from './api/index.js';
+import authRoutes from './auth/index.js';
+import dashboardRoutes from './dashboard/index.js';
+import errorRoutes from './errors/index.js';
+import publicRoutes from './public/index.js';
 
 const router = Router();
 

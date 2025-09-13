@@ -1,4 +1,3 @@
-import getTranslation from './getTranslation';
-import uuid from './uuid';
+import uuid from './uuid.js';
 
-export { getTranslation, uuid };
+export { uuid };

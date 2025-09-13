@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 const router = Router();
 
-// Add public routes here
+router.get('/', (req, res) => {
+    res.send('Welcome to the Public API!');
+});
 
 export default router;
