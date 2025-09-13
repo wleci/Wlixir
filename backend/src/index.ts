@@ -1,4 +1,4 @@
-import './config';
+import './config/index.js';
 import MessageLogger from './cli/logger/index.js';
 import WebServer from './web/index.js';
 const logger = new MessageLogger('Menu');

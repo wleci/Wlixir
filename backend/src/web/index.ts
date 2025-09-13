@@ -12,21 +12,45 @@ class WebServer {
 
     private loadMiddlewares() {
         this.app.use(middlewares.logger);
-        this.app.use(middlewares.helmet);
-        this.app.use(middlewares.cors);
-        this.app.use(middlewares.rateLimit);
-        this.app.use(middlewares.bodyParser);
-        this.app.use(middlewares.compression);
-        this.app.use(middlewares.session);
-        this.app.use(middlewares.csrf);
-        this.app.use(middlewares.staticFiles);
+        try {
+            // bodyParser accepts options
+            if (typeof middlewares.bodyParser === 'function') {
+                this.app.use(middlewares.bodyParser({ limitBytes: 2 * 1024 * 1024 }));
+            }
+
+            // compression returns a factory
+            if (typeof middlewares.compression === 'function') {
+                this.app.use(middlewares.compression());
+            }
+
+            // rateLimit is a factory
+            if (typeof middlewares.rateLimit === 'function') {
+                this.app.use(middlewares.rateLimit());
+            }
+
+            // session factory
+            if (typeof middlewares.session === 'function') {
+                this.app.use(middlewares.session());
+            }
+        } catch (err) {
+            // if middleware factory throws during setup, log and continue
+            // eslint-disable-next-line no-console
+            console.error('Error initializing middleware:', err);
+        }
+        // SPA will be served by spaFallback middleware after all routes
     }
 
     private loadRoutes() {
+        // Mount all Express routes first
         this.app.use(routes);
-    }
 
-    public start() {
+        // SPA Fallback - MUST be last! Handles 404s by serving React app
+        // This will only trigger if no Express route matched
+        const spaMiddlewares = middlewares.spaFallback();
+        spaMiddlewares.forEach(middleware => {
+            this.app.use(middleware);
+        });
+    } public start() {
         this.loadMiddlewares();
         this.loadRoutes();
         const host = CONFIG.WEB.hostname
